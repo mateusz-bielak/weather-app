@@ -9,7 +9,7 @@
     },
     "rules": {
         "arrow-parens": [0, "as-needed"],
-        "max-len": [0, { "code": 80 }],
+        "max-len": [0, { "code": 100 }],
         "no-shadow": 2,
         "quotes": [2, "single", { "avoidEscape": true }],
 
