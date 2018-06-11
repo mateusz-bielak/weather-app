@@ -19,14 +19,18 @@ const encodedAddress = encodeURI(argv.a);
 const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
 
 const locationOptions = {
-    url: `${url}&${apiKey}`,
+    url: `${url}&key=${apiKey}`,
     json: true,
 };
 
 const location = request(locationOptions)
     .then(response => {
+        if (response.status === 'ZERO_RESULTS') {
+            return console.log('Unable to find that address.');
+        }
+
         console.log(`Address: ${response.results[0].formatted_address}`);
         console.log(`Latitude is ${response.results[0].geometry.location.lat}`);
         console.log(`Longitude is ${response.results[0].geometry.location.lng}`);
     })
-    .catch(err => console.log(JSON.stringify(err, null, 2)));
+    .catch(error => console.log('Unable to connect to Google servers.'));
