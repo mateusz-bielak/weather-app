@@ -15,10 +15,15 @@ const geocodeAddress = address => {
             if (response.status === 'ZERO_RESULTS') {
                 return console.log('Unable to find that address.');
             }
+            const { lat, lng } = response.results[0].geometry.location;
+            return {
+                latitude: lat,
+                longitude: lng,
+            };
 
-            console.log(`Address: ${response.results[0].formatted_address}`);
-            console.log(`Latitude is ${response.results[0].geometry.location.lat}`);
-            console.log(`Longitude is ${response.results[0].geometry.location.lng}`);
+            // console.log(`Address: ${response.results[0].formatted_address}`);
+            // console.log(`Latitude is ${response.results[0].geometry.location.lat}`);
+            // console.log(`Longitude is ${response.results[0].geometry.location.lng}`);
         })
         .catch(() => console.log('Unable to connect to Google servers.'));
 };
