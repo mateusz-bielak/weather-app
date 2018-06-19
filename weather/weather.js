@@ -1,16 +1,25 @@
 const request = require('request-promise');
 
-const getWeather = ({ latitude, longitude }) => {
-    const url = `https://api.darksky.net/forecast/4af2f6b9164e3604621f6bee6b86536f/${latitude},${longitude}`;
+const geocode = require('../geocode/geocode');
 
-    return request({ url, json: true })
-        .then(res =>
-            console.log(
-                `It's currently ${res.currently.temperature}F. It feels like ${
-                    res.currently.apparentTemperature
-                }F.`,
-            ),
-        )
+const getWeather = address => {
+    geocode
+        .geocodeAddress(address)
+        .then(res => {
+            const api = 'https://api.darksky.net/forecast/4af2f6b9164e3604621f6bee6b86536f/';
+            const url = `${api}${res.latitude},${res.longitude}`;
+
+            if (res === undefined) {
+                reject();
+            }
+
+            return request({ url, json: true }).then(res => {
+                const { temperature, apparentTemperature } = res.currently;
+                return console.log(
+                    `It's currently ${temperature}F. It feels like ${apparentTemperature}F.`,
+                );
+            });
+        })
         .catch(() => console.log('Unable to fetch weather.'));
 };
 

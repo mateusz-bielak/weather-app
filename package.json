@@ -8,12 +8,16 @@
         "url": "git+https://github.com/mateusz-bielak/weather-app.git"
     },
     "license": "ISC",
-    "scripts": {},
+    "scripts": {
+        "start": "nodemon"
+    },
     "devDependencies": {
         "eslint": "^4.19.1",
         "eslint-config-airbnb-base": "^12.1.0",
         "eslint-config-prettier": "^2.9.0",
-        "eslint-plugin-import": "^2.12.0"
+        "eslint-plugin-import": "^2.12.0",
+        "nodemon": "^1.17.5",
+        "prettier": "^1.13.5"
     },
     "dependencies": {
         "request": "^2.87.0",

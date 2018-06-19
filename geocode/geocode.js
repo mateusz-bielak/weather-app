@@ -20,10 +20,6 @@ const geocodeAddress = address => {
                 latitude: lat,
                 longitude: lng,
             };
-
-            // console.log(`Address: ${response.results[0].formatted_address}`);
-            // console.log(`Latitude is ${response.results[0].geometry.location.lat}`);
-            // console.log(`Longitude is ${response.results[0].geometry.location.lng}`);
         })
         .catch(() => console.log('Unable to connect to Google servers.'));
 };
