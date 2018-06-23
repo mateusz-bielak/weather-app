@@ -14,4 +14,4 @@ const argv = yargs
     .help()
     .alias('h', 'help').argv;
 
-weather.getWeather(argv.a);
+weather.getWeather(argv.address);
